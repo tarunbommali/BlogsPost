@@ -7,7 +7,7 @@
 }
 
 .post-container {
-  background-color: bisque;
+  background-color: white;
   padding: 28px;
   margin: 5px;
   border-radius: 5px;
@@ -35,13 +35,14 @@
   font-size: 14px;
   font-weight: bold;
   margin: 2px;
+  color: #b5bac3;
 }
 
 .label-input {
-  padding: 8px 2px;
+  padding: 8px 5px;
   outline: none;
-  border-radius: 3px;
-  border: none;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
   font-size: 16px;
 }
 
@@ -107,4 +108,9 @@
 .previous-blog-title {
   text-align: left;
   margin-bottom: 15px;
+}
+
+.throwback-blogitem-item-title {
+  font-size: 18px;
+  width: 60%;
 }

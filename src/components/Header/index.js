@@ -14,9 +14,9 @@ const Header = () => {
             </Link>
             <div>
                 {isWriteBlogPage ? (
-                    <Link className='nav-link' to="/" >Read Articles</Link>
+                    <Link className='nav-link to' to="/" >Read Articles</Link>
                 ) : (
-                    <Link className='nav-link' to='/write-blog' >Write Blog</Link>
+                    <Link className='nav-link to' to='/write-blog' >Write Blog</Link>
                 )}
             </div>
         </div>

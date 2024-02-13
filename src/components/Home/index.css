@@ -1,8 +1,7 @@
 .home-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+  justify-content: center;
 }
 
 .blog-list {
@@ -14,6 +13,7 @@
 }
 
 .bloglist-view-title {
-  margin: 5px;
+  margin-bottom: 25px;
   padding: 5px;
+  color: #25292e;
 }

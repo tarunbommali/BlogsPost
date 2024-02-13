@@ -8,7 +8,6 @@ import './index.css';
 const Admin = () => {
     const [newBlogTitle, setNewBlogTitle] = useState('');
     const [newBlogContent, setNewBlogContent] = useState('');
-    const [newPublishedDate, setPublishedDate] = useState('');
     const { blogList, setBlogList } = useBlogContext(); // Use the useBlogContext hook
 
     useEffect(() => {
@@ -31,22 +30,19 @@ const Admin = () => {
                 throw new Error('Blog content must have at least 200 words.');
             }
 
-            // Check if published date is not provided
-            if (!newPublishedDate) {
-                throw new Error('Published date is required.');
-            }
 
+
+            const genrateCurrentDateAndTime = new Date();
             const newBlog = {
                 title: newBlogTitle,
                 content: newBlogContent,
-                publishedDate: newPublishedDate
+                publishedDate: genrateCurrentDateAndTime.toLocaleString()
             };
 
             const docRef = await addDoc(collection(db, "Blogs"), newBlog);
 
             setNewBlogTitle('');
             setNewBlogContent('');
-            setPublishedDate('');
 
             setBlogList(prevList => [...prevList, { id: docRef.id, ...newBlog }]);
         } catch (error) {
@@ -82,10 +78,7 @@ const Admin = () => {
                         <label htmlFor='content' className='label-text'>Content</label>
                         <textarea value={newBlogContent} className='label-input content-input' onChange={(e) => setNewBlogContent(e.target.value)} placeholder='Enter the blog content here...' />
                     </div>
-                    <div className='input-container'>
-                        <label htmlFor='links' className='label-text'>Published Date</label>
-                        <input type='date' className='label-input' value={newPublishedDate} onChange={(e) => setPublishedDate(e.target.value)} />
-                    </div>
+
                     <div>
                         <button type="submit" className='add-button'>Add Blog</button>
                     </div>
@@ -100,7 +93,7 @@ const Admin = () => {
                 {blogList.map((blog) => (
                     <li className='blogitem' key={blog.id}>
                         <div className='title-container'>
-                            <h1>{blog.title}</h1>
+                            <h1 className='throwback-blogitem-item-title'>{blog.title}</h1>
                             <div className='btn-container'>
                                 <button className='edit-btn' type='button'><FaEdit size={28} /></button>
                                 <button onClick={() => deleteBlog(blog.id)} type='button' className='del-btn'><FaTrash size={28} /></button>
