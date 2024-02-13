@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import { auth, googleProvider } from '../../config/firebase';
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import { auth } from '../../config/firebase';
+import { FaGoogle } from 'react-icons/fa';
+
+import './index.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -18,24 +21,31 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
+            setError(null); // Reset error state
             await signInWithEmailAndPassword(getAuth(), email, password);
         } catch (error) {
+            setError(error.message); // Set error message from Firebase
             console.error(error);
         }
     };
 
     const handleSignUp = async () => {
         try {
+            setError(null); // Reset error state
             await createUserWithEmailAndPassword(getAuth(), email, password);
         } catch (error) {
+            setError(error.message); // Set error message from Firebase
             console.error(error);
         }
     };
 
     const handleGoogleLogin = async () => {
         try {
-            await signInWithPopup(getAuth(), googleProvider);
+            setError(null); // Reset error state
+            const provider = new GoogleAuthProvider();
+            await signInWithPopup(getAuth(), provider);
         } catch (error) {
+            setError(error.message); // Set error message from Firebase
             console.error(error);
         }
     };
@@ -49,24 +59,38 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className='login-container'>
             {user ? (
                 <div>
                     <p>Welcome, {user.email}</p>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
-                <div>
-                    <input type='text' placeholder="Email..." value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type='password' placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <div className='sign-btn-container'>
-                        <button onClick={handleLogin}>Sign In</button>
-                        <button onClick={handleSignUp}>Sign Up</button>
+                <div className='form-container'>
+                    <h1>Join in Quick Reads</h1>
+                    <div className='input-container'>
+                        <label htmlFor='email' className='label-text'>Email</label>
+                        <input type='text' id='email' className='label-input' placeholder="Email..." value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
-                    <button onClick={handleGoogleLogin}>Sign In with Google</button>
+                    <div className='input-container'>
+                        <label htmlFor='password' className='label-text'>Password</label>
+                        <input type='password' id='password' className='label-input' placeholder="Password..." value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+
+                    {error && <p className='err-msg'>{error}</p>}
+
+                    <div className='sign-btn-container'>
+                        <button className='btn sign' onClick={handleLogin}>Sign In</button>
+                        <button className='btn sign' onClick={handleSignUp}>Sign Up</button>
+                    </div>
                 </div>
             )}
-            <Link to="/"><button>Back to Home</button></Link>
+            <button className='btn' onClick={handleGoogleLogin}>
+                <div className='google-sign-btn-container'>
+                    <FaGoogle className='google-icon' />
+                    Sign In with Google
+                </div>
+            </button>
         </div>
     );
 };

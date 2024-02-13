@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { useBlogContext } from '../../context/BlogContext'; // Import the BlogContext
+import { useBlogContext } from '../../context/BlogContext';
 
 import './index.css';
 
@@ -10,19 +10,20 @@ const Admin = () => {
     const [newBlogTitle, setNewBlogTitle] = useState('');
     const [newBlogContent, setNewBlogContent] = useState('');
     const [newPublishedDate, setPublishedDate] = useState('');
-    const { blogList, setBlogList } = useBlogContext(); // Use the useBlogContext hook
+    const { blogList, setBlogList } = useBlogContext();
 
     useEffect(() => {
-        const getBlogList = async () => {
+        const fetchBlogList = async () => {
             try {
                 const data = await getDocs(collection(db, 'Blogs'));
                 const filteredData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
                 setBlogList(filteredData);
             } catch (error) {
-                console.error(error);
+                console.error('Error fetching blog list:', error);
             }
         };
-        getBlogList();
+
+        fetchBlogList();
     }, [setBlogList]);
 
     const addNewBlog = async () => {
@@ -35,32 +36,30 @@ const Admin = () => {
 
             const docRef = await addDoc(collection(db, "Blogs"), newBlog);
 
-            setNewBlogTitle("");
-            setNewBlogContent("");
-            setPublishedDate("");
+            setNewBlogTitle('');
+            setNewBlogContent('');
+            setPublishedDate('');
 
-            // Update local state with the new blog item
             setBlogList(prevList => [...prevList, { id: docRef.id, ...newBlog }]);
         } catch (error) {
-            console.error("Error adding document: ", error);
+            console.error('Error adding new blog:', error);
         }
     };
 
     const deleteBlog = async (id) => {
         try {
             await deleteDoc(doc(db, 'Blogs', id));
-            // Update local state by removing the deleted blog item
             setBlogList(prevList => prevList.filter(blog => blog.id !== id));
         } catch (error) {
-            console.error('Error deleting document: ', error);
+            console.error('Error deleting blog:', error);
         }
     };
 
     return (
         <div className='admin-dashboard'>
             <form className='post-container' onSubmit={(e) => {
-                e.preventDefault(); // Prevent default form submission
-                addNewBlog(); // Call the addNewBlog function on form submission
+                e.preventDefault();
+                addNewBlog();
             }}>
                 <h2>Add New Blog Post</h2>
                 <div className='input-container'>

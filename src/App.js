@@ -10,14 +10,12 @@ function App() {
   return (
     <Router>
       <BlogContextProvider> {/* Use BlogContextProvider */}
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/write-blog" element={<Admin />} />
-          </Routes>
-        </div>
+        <Header />
+        <Routes>
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/write-blog" element={<Admin />} />
+        </Routes>
       </BlogContextProvider>
     </Router>
   );

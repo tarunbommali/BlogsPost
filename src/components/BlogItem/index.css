@@ -1,3 +1,18 @@
-.user-bloglist-container {
-  width: 80vw;
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .blogitem-title {
+    font-size: 16px;
+  }
+}
+
+.blogitem-view {
+  list-style: none;
+  width: 100%; /* Make the child element occupy the entire width of its parent */
+  margin: 5px;
+  background-color: azure;
+  padding: 18px;
+  border-radius: 3px;
 }

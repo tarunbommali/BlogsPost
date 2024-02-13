@@ -1,0 +1,50 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.form-container {
+  padding: 48px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 48px;
+  background-color: #e8e8e8;
+  color: black;
+  width: 300px;
+}
+
+.label-text {
+  margin-bottom: 5px;
+}
+
+.sign {
+  background-color: #f0f0f0;
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+}
+
+.google-sign-btn-container {
+  display: flex;
+  align-items: center;
+}
+.google-icon {
+  margin-right: 8px;
+}
+
+.err-msg {
+  color: red;
+}
+
+.input-container {
+  width: 100%;
+}
+.sign-btn-container {
+  display: flex;
+  padding-top: 19px;
+}

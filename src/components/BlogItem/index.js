@@ -1,23 +1,17 @@
 import React from 'react';
-import { useBlogContext } from '../../context/BlogContext';
 import './index.css'
 
-const BlogItem = () => {
-    const { blogList } = useBlogContext();
-    console.log(blogList, "BlogItem")
+const BlogItem = ({ blogDetails }) => {
+
+    const { title, publishedDate, content, id } = blogDetails;
     return (
-        <ul className='user-bloglist-container bloglist-container'>
-            {blogList.map((blog) => (
-                <li className='blogitem' key={blog.id}>
-                    <div className='title-container'>
-                        <h1>{blog.title}</h1>
-                    </div>
-                    <span className='published-on'>Published on: {blog.publishedDate}</span>
-                    <p>{blog.content}</p>
-                </li>
-            ))}
-        </ul>
-    );
+        <li className='blogitem-view' key={id}>
+            <h1 className='blogitem-title'>{title}</h1>
+            <span className='published-on'>Published on: {publishedDate}</span>
+            <p>{content}</p>
+        </li>
+    )
+
 };
 
 export default BlogItem;

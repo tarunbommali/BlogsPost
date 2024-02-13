@@ -6,6 +6,7 @@ const BlogContext = createContext();
 
 export const useBlogContext = () => useContext(BlogContext);
 
+
 export const BlogContextProvider = ({ children }) => {
     const [blogList, setBlogList] = useState([]);
 
@@ -23,8 +24,20 @@ export const BlogContextProvider = ({ children }) => {
         fetchBlogList();
     }, []);
 
+    const addNewBlog = async (newBlogData) => {
+        try {
+            // Add new blog to Firestore
+            // Wait for Firestore operation to complete
+            // Assuming newBlogData is an object containing blog data
+            // Update local state with the new blog item
+            setBlogList(prevList => [...prevList, newBlogData]);
+        } catch (error) {
+            console.error('Error adding new blog:', error);
+        }
+    };
+
     return (
-        <BlogContext.Provider value={{ blogList }}>
+        <BlogContext.Provider value={{ blogList, addNewBlog }}>
             {children}
         </BlogContext.Provider>
     );

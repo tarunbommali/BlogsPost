@@ -81,7 +81,8 @@
 }
 
 .del-btn,
-.edit-btn {
+.edit-btn,
+.btn {
   font-size: 18px;
   font-weight: 400px;
   cursor: pointer;
