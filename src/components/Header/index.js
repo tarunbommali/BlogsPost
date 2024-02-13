@@ -8,7 +8,10 @@ const Header = () => {
 
     return (
         <div className='header'>
-            <h1 className='blogs-title'>Quick Reads</h1>
+
+            <Link to="/" className='nav-link'>
+                <h1 className='blogs-title'> Quick Reads</h1>
+            </Link>
             <div>
                 {isWriteBlogPage ? (
                     <Link className='nav-link' to="/" >Read Articles</Link>

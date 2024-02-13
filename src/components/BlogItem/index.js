@@ -8,6 +8,7 @@ const BlogItem = ({ blogDetails }) => {
         <li className='blogitem-view' key={id}>
             <h1 className='blogitem-title'>{title}</h1>
             <span className='published-on'>Published on: {publishedDate}</span>
+            <hr className='hr' />
             <p>{content}</p>
         </li>
     )

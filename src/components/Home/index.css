@@ -11,3 +11,8 @@
   flex-direction: column;
   width: 80vw;
 }
+
+.bloglist-view-title {
+  margin: 5px;
+  padding: 5px;
+}

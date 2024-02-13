@@ -2,3 +2,48 @@
   margin: 0px;
   box-sizing: border-box;
 }
+
+.footer-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  text-align: center;
+  padding: 48px;
+  margin-top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  line-height: 1.5;
+  font-size: 14px;
+  font-weight: 500;
+  color: #797979;
+  background-color: #f0f0f0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.back-to-top-btn {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 9999; /* Ensure it appears above other content */
+  color: black; /* Button text color */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition effect */
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.back-to-top-btn:hover {
+  color: red; /* Change color on hover */
+}
+
+a {
+  text-decoration: none;
+}

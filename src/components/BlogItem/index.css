@@ -13,6 +13,19 @@
   width: 100%; /* Make the child element occupy the entire width of its parent */
   margin: 5px;
   background-color: azure;
-  padding: 18px;
+  padding: 28px;
   border-radius: 3px;
+  line-height: 1.4;
+}
+
+.blogitem-title {
+  margin-bottom: 5px;
+}
+
+.published-on {
+  margin-bottom: 10px;
+}
+.hr {
+  margin-bottom: 5px;
+  margin-top: 5px;
 }

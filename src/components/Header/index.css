@@ -5,6 +5,7 @@
   color: azure;
   justify-content: space-between;
   align-items: center;
+  height: 78px;
 }
 
 .nav-link {
@@ -31,4 +32,17 @@
   .header {
     padding: 0px 8px;
   }
+}
+
+@keyframes colorFill {
+  75% {
+    color: white;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.blogs-title {
+  animation: colorFill 15s infinite;
 }

@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { useBlogContext } from '../../context/BlogContext';
-
+import { useBlogContext } from '../../context/BlogContext'; // Import the BlogContext
 import './index.css';
 
 const Admin = () => {
     const [newBlogTitle, setNewBlogTitle] = useState('');
     const [newBlogContent, setNewBlogContent] = useState('');
     const [newPublishedDate, setPublishedDate] = useState('');
-    const { blogList, setBlogList } = useBlogContext();
+    const { blogList, setBlogList } = useBlogContext(); // Use the useBlogContext hook
 
     useEffect(() => {
         const fetchBlogList = async () => {
@@ -22,12 +21,21 @@ const Admin = () => {
                 console.error('Error fetching blog list:', error);
             }
         };
-
         fetchBlogList();
     }, [setBlogList]);
 
     const addNewBlog = async () => {
         try {
+            // Check if content is empty or doesn't have at least 500 words
+            if (!newBlogContent || newBlogContent.trim().split(/\s+/).length < 200) {
+                throw new Error('Blog content must have at least 200 words.');
+            }
+
+            // Check if published date is not provided
+            if (!newPublishedDate) {
+                throw new Error('Published date is required.');
+            }
+
             const newBlog = {
                 title: newBlogTitle,
                 content: newBlogContent,
@@ -42,13 +50,16 @@ const Admin = () => {
 
             setBlogList(prevList => [...prevList, { id: docRef.id, ...newBlog }]);
         } catch (error) {
-            console.error('Error adding new blog:', error);
+            console.error('Error adding new blog:', error.message);
+            // Display error message
+            alert(error.message);
         }
     };
 
     const deleteBlog = async (id) => {
         try {
             await deleteDoc(doc(db, 'Blogs', id));
+            // Update local state by removing the deleted blog item
             setBlogList(prevList => prevList.filter(blog => blog.id !== id));
         } catch (error) {
             console.error('Error deleting blog:', error);
@@ -57,29 +68,35 @@ const Admin = () => {
 
     return (
         <div className='admin-dashboard'>
-            <form className='post-container' onSubmit={(e) => {
-                e.preventDefault();
-                addNewBlog();
-            }}>
-                <h2>Add New Blog Post</h2>
-                <div className='input-container'>
-                    <label htmlFor='title' className='label-text'>Title</label>
-                    <input type='text' className='label-input' value={newBlogTitle} onChange={(e) => setNewBlogTitle(e.target.value)} placeholder='Enter blog title here...' />
-                </div>
-                <div className='input-container'>
-                    <label htmlFor='content' className='label-text'>Content</label>
-                    <textarea value={newBlogContent} className='label-input content-input' onChange={(e) => setNewBlogContent(e.target.value)} placeholder='Enter the blog content here...' />
-                </div>
-                <div className='input-container'>
-                    <label htmlFor='links' className='label-text'>Published Date</label>
-                    <input type='date' className='label-input' value={newPublishedDate} onChange={(e) => setPublishedDate(e.target.value)} />
-                </div>
-                <div>
-                    <button type="submit" className='add-button'>Add Blog</button>
-                </div>
-            </form>
+            <div className='form-page'>
+                <form className='post-container' onSubmit={(e) => {
+                    e.preventDefault(); // Prevent default form submission
+                    addNewBlog(); // Call the addNewBlog function on form submission
+                }}>
+                    <h2>Add New Blog Post</h2>
+                    <div className='input-container'>
+                        <label htmlFor='title' className='label-text'>Title</label>
+                        <input type='text' className='label-input' value={newBlogTitle} onChange={(e) => setNewBlogTitle(e.target.value)} placeholder='Enter blog title here...' />
+                    </div>
+                    <div className='input-container'>
+                        <label htmlFor='content' className='label-text'>Content</label>
+                        <textarea value={newBlogContent} className='label-input content-input' onChange={(e) => setNewBlogContent(e.target.value)} placeholder='Enter the blog content here...' />
+                    </div>
+                    <div className='input-container'>
+                        <label htmlFor='links' className='label-text'>Published Date</label>
+                        <input type='date' className='label-input' value={newPublishedDate} onChange={(e) => setPublishedDate(e.target.value)} />
+                    </div>
+                    <div>
+                        <button type="submit" className='add-button'>Add Blog</button>
+                    </div>
+                </form>
+            </div>
 
             <ul className='bloglist-container'>
+                <h1 className='previous-blog-title'>
+                    #ThrowbackQuickReads
+                </h1>
+
                 {blogList.map((blog) => (
                     <li className='blogitem' key={blog.id}>
                         <div className='title-container'>

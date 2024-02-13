@@ -6,7 +6,6 @@ const BlogContext = createContext();
 
 export const useBlogContext = () => useContext(BlogContext);
 
-
 export const BlogContextProvider = ({ children }) => {
     const [blogList, setBlogList] = useState([]);
 
@@ -21,7 +20,7 @@ export const BlogContextProvider = ({ children }) => {
             }
         };
 
-        fetchBlogList();
+        fetchBlogList().catch(error => console.error('Error in fetchBlogList:', error));
     }, []);
 
     const addNewBlog = async (newBlogData) => {
@@ -37,7 +36,7 @@ export const BlogContextProvider = ({ children }) => {
     };
 
     return (
-        <BlogContext.Provider value={{ blogList, addNewBlog }}>
+        <BlogContext.Provider value={{ blogList, setBlogList, addNewBlog }}>
             {children}
         </BlogContext.Provider>
     );

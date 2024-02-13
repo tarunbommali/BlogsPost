@@ -9,9 +9,10 @@ const Home = () => {
     return (
         <div className="home-container">
             <ul className="blog-list">
+                <h1 className='bloglist-view-title'>#ShortQuickReads</h1>
                 {
-                    blogList.map((blog, index) => (
-                        <BlogItem blogDetails={blog} id={index} />
+                    blogList.map(blog => (
+                        <BlogItem blogDetails={blog} key={blog.id} />
                     ))
                 }
             </ul>
