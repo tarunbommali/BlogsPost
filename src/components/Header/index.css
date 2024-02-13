@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  padding: 0px 48px;
+  background-color: brown;
+  color: azure;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 500px;
+  color: azure;
+  font-size: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-link:hover {
+  zoom: 1.05; /* Increase the value for more zoom */
+  color: #f0f0f0;
+  font-weight: bold;
+}
