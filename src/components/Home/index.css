@@ -6,14 +6,33 @@
 
 .blog-list {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 80vw;
 }
 
 .bloglist-view-title {
-  margin-bottom: 25px;
+  margin: 25px;
   padding: 5px;
   color: #25292e;
+}
+
+@media only screen and (max-width: 768px) {
+  .blog-list {
+    width: 100vw;
+  }
+  .empty-list-mgs {
+    font-size: 14px;
+  }
+}
+
+.empty-list-mgs {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+  font-weight: bold;
+}
+.empty-list-span {
+  color: green;
+  text-decoration: underline;
 }

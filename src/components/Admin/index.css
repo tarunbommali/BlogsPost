@@ -1,9 +1,16 @@
+/* Admin.css */
 .admin-dashboard {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #f0f0f0;
+}
+
+.form-page {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
 }
 
 .post-container {
@@ -14,19 +21,20 @@
   width: 65vw;
 }
 
-.form-page {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-}
-
 .input-container {
   margin: 5px;
-  display: flex;
-  flex-direction: column;
 }
 
-.content-input {
+.input-field {
+  width: 100%;
+  padding: 8px 5px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+}
+
+.content-field {
   height: 200px;
   overflow-y: scroll;
 }
@@ -38,21 +46,14 @@
   color: #b5bac3;
 }
 
-.label-input {
-  padding: 8px 5px;
-  outline: none;
-  border-radius: 5px;
-  border: 1px solid #cccccc;
-  font-size: 16px;
-}
-
-.add-button {
+.action-button {
   cursor: pointer;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   margin: 15px 5px;
-  padding: 5px 8px;
+  padding: 8px 18px;
+  font-weight: 560;
 }
 
 /* BlogItem CSS */
@@ -61,56 +62,85 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 65vw;
+  width: 90vw;
 }
 
-.blogitem {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 100%;
+.admin-blogitem {
   background-color: azure;
-  padding: 48px;
   border-radius: 5px;
   margin: 5px;
+  padding: 48px;
+  width: 100%;
+  list-style: none;
+  line-height: 1.3;
 }
 
-.published-on {
-  gap: none;
-  color: #a0a0a0;
-  font-weight: 400;
-  padding-top: 5px;
+.title-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.del-btn,
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  padding: 5px 24px;
+}
+
+.icon {
+  color: #24282d;
+  font-size: 23px;
+}
+
+.previous-blog-title {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.admin-blog-title {
+  font-size: 18px;
+  width: 90%;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Add CSS rules for smaller screens here */
+  .post-container {
+    width: 90vw; /* Adjust the width for better display on small screens */
+  }
+
+  .icon {
+    font-size: 16px;
+    color: #3f4347;
+  }
+
+  .del-btn,
+  .edit-btn {
+    padding: 5px 15px;
+  }
+}
+
+.admin-blog-posted-date {
+  margin-bottom: 15px;
   padding-bottom: 15px;
 }
 
 .title-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
 
-.del-btn,
-.edit-btn,
-.btn {
-  font-size: 18px;
-  font-weight: 400px;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 24px;
-  background-color: transparent;
-}
-
-.btn-container {
-  display: flex;
-}
-.previous-blog-title {
-  text-align: left;
   margin-bottom: 15px;
 }
 
-.throwback-blogitem-item-title {
-  font-size: 18px;
-  width: 60%;
+.hr {
+  margin-bottom: 5px;
+}
+
+.admin-title-buttons-container {
+  display: flex;
 }

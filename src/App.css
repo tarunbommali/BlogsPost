@@ -21,19 +21,17 @@
   font-weight: 500;
   color: #797979;
   background-color: #f0f0f0;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
 }
 
 .back-to-top-btn {
   position: fixed;
-  bottom: 20px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
+  bottom: 40px; /* Adjust as needed */
+  right: 15px; /* Adjust as needed */
   z-index: 9999; /* Ensure it appears above other content */
-  color: black; /* Button text color */
+  color: #848484; /* Button text color */
   border: none;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Smooth transition effect */
   border-radius: 50%;
@@ -41,9 +39,15 @@
 }
 
 .back-to-top-btn:hover {
-  color: red; /* Change color on hover */
+  color: black; /* Change color on hover */
 }
 
 a {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .arrow {
+    font-size: 16px;
+  }
 }

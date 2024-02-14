@@ -67,12 +67,12 @@ const Login = () => {
                 </div>
             ) : (
                 <div className='form-container'>
-                    <h1>Join in Quick Reads</h1>
-                    <div className='input-container'>
+                    <h1 className='form-header'>Get Started</h1>
+                    <div className='input-field-container'>
                         <label htmlFor='email' className='label-text'>Email</label>
                         <input type='text' id='email' className='label-input' placeholder="Email..." value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
-                    <div className='input-container'>
+                    <div className='input-field-container'>
                         <label htmlFor='password' className='label-text'>Password</label>
                         <input type='password' id='password' className='label-input' placeholder="Password..." value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
@@ -85,10 +85,10 @@ const Login = () => {
                     </div>
                 </div>
             )}
-            <button className='btn' onClick={handleGoogleLogin}>
+            <button className='google-button' onClick={handleGoogleLogin}>
                 <div className='google-sign-btn-container'>
                     <FaGoogle className='google-icon' />
-                    Sign In with Google
+                    Continue with Google
                 </div>
             </button>
         </div>

@@ -15,7 +15,13 @@
   margin: 48px;
   background-color: #e8e8e8;
   color: black;
-  width: 300px;
+  width: 350px;
+  height: 350px;
+}
+
+.form-header {
+  margin-bottom: 10px;
+  color: black;
 }
 
 .label-text {
@@ -23,10 +29,16 @@
 }
 
 .sign {
-  background-color: #f0f0f0;
+  background-color: #666666;
   margin: 5px;
-  padding: 5px;
-  width: 150px;
+  padding: 8px 5px;
+  width: 120px;
+  outline: none;
+  border: none;
+  color: #e8e8e8;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .google-sign-btn-container {
@@ -41,10 +53,43 @@
   color: red;
 }
 
-.input-container {
+.input-field-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  margin-bottom: 15px;
 }
 .sign-btn-container {
   display: flex;
   padding-top: 19px;
+}
+
+.label-input {
+  padding: 5px;
+  outline: none;
+}
+
+.google-sign-btn-container {
+  font-size: 18px;
+  padding: 5px;
+  outline: none;
+  border: none;
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+  .google-sign-btn-container {
+    font-size: 16px;
+    outline: none;
+  }
+}
+
+.google-button {
+  background-color: #25292e;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
